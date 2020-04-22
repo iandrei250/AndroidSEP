@@ -3,11 +3,13 @@ package com.example.spacestationui;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 //Bar Chart
 import com.github.mikephil.charting.charts.BarChart;
@@ -16,7 +18,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-
+import com.google.android.material.navigation.NavigationView;
 
 
 import android.view.Menu;
@@ -25,7 +27,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawerLayout;
     BarChart mpBarChart;
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.main_page);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.navigation_drawer_open
         ,R.string.navigation_drawer_close);
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         BarData data = new BarData(barDataSet1,barDataSet2,barDataSet3,barDataSet4);
         mpBarChart.setData(data);
 
-        String[] days=new String[]{"Sunday","Monday","Tuesday","Gayday","Thursday","Friday","Saturday"};
+        String[] days=new String[]{"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
         XAxis xAxis=mpBarChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
         xAxis.setCenterAxisLabels(true);
@@ -130,6 +135,31 @@ public class MainActivity extends AppCompatActivity {
         barEntries.add(new BarEntry(7,1100));
         return barEntries;
     }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch(menuItem.getItemId()){
+            case R.id.nav_co2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new CO2_Fragment()).commit();
+                break;
+            case R.id.nav_temp:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Temperature_Fragment()).commit();
+                break;
+
+            case R.id.nav_humidity :
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Humidity_Fragment()).commit();
+                break;
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+        }
+
+
 
 
     @Override
