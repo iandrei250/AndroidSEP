@@ -8,16 +8,17 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher_round" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Space station"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:text="Space Station"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="18dp" />
 
 </LinearLayout>

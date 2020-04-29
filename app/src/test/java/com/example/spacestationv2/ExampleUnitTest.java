@@ -1,4 +1,4 @@
-package com.example.spacestationui;
+package com.example.spacestationv2;
 
 import org.junit.Test;
 

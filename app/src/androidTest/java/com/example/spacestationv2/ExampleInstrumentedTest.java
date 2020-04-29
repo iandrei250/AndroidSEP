@@ -1,4 +1,4 @@
-package com.example.spacestationui;
+package com.example.spacestationv2;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.spacestationui", appContext.getPackageName());
+        assertEquals("com.example.spacestationv2", appContext.getPackageName());
     }
 }
