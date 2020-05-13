@@ -1,4 +1,4 @@
-package com.example.spacestationv2;
+package com.example.spacestationv2.View;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 //Bar Chart
+import com.example.spacestationv2.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
