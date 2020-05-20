@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.spacestationv2.Model.Co2;
-import com.example.spacestationv2.Model.Repository;
+import com.example.spacestationv2.Co2;
+import com.example.spacestationv2.Repository;
 
 import java.util.List;
 
