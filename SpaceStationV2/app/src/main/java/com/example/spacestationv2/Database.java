@@ -8,6 +8,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.spacestationv2.Model.Co2;
+
 @androidx.room.Database(entities = {Co2.class,Humidity.class, Temperature.class}, version = 1, exportSchema = false)
 public abstract class Database extends RoomDatabase {
 

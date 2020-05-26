@@ -3,6 +3,9 @@ package com.example.spacestationv2;
 import android.app.Application;
 import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
+
+import com.example.spacestationv2.Model.Co2;
+
 import java.util.List;
 
 public class Repository {

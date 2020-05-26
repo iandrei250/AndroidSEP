@@ -1,15 +1,18 @@
 package com.example.spacestationv2.Model;
 
 
-import com.example.spacestationv2.ViewModel.Post;
-
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface Api {
 
-    @GET("posts")
-    Call<List<Post>> getPosts();
+    @GET("data/GetData")
+    Call<List<Co2V>> getCo2(@Query("date") LocalDate date,
+                              @Query("type") String type);
 }
