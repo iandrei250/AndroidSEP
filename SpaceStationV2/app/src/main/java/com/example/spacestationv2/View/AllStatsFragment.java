@@ -39,13 +39,13 @@ public class AllStatsFragment extends Fragment {
         barDataSet2.setColors(Color.BLUE);
     BarDataSet barDataSet3=new BarDataSet(barEntries3(),"Luminosity");
         barDataSet3.setColors(Color.YELLOW);
-    BarDataSet barDataSet4=new BarDataSet(barEntries4(),"Stupidity");
+    BarDataSet barDataSet4=new BarDataSet(barEntries4(),"Temperature");
         barDataSet4.setColors(Color.GREEN);
 
     BarData data = new BarData(barDataSet1,barDataSet2,barDataSet3,barDataSet4);
         mpBarChart.setData(data);
 
-    String[] days=new String[]{"Sunday","Monday","Tuesday","Gayday","Thursday","Friday","Saturday"};
+    String[] days=new String[]{"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
     XAxis xAxis=mpBarChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
         xAxis.setCenterAxisLabels(true);

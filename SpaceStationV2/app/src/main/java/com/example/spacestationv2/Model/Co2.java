@@ -1,21 +1,15 @@
 package com.example.spacestationv2.Model;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import java.time.LocalDate;
+import java.util.Date;
 
-import java.sql.Date;
+public class CO2 {
 
-@Entity(tableName = "co2_table")
-public class Co2 {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    public int CO2ID;
 
+    public float CO2_value;
 
-    private int CO2ID;
-
-    private float CO2_value;
-
-
+    public Date Date;
 
     public int getCO2ID() {
         return CO2ID;
@@ -25,39 +19,7 @@ public class Co2 {
         return CO2_value;
     }
 
-
-    private int Co2QuantityToday;
-
-    private int Co2QuantityYesterday;
-
-    public Co2(int Co2QuantityToday, int Co2QuantityYesterday) {
-        this.Co2QuantityToday = Co2QuantityToday;
-        this.Co2QuantityYesterday = Co2QuantityYesterday;
+    public java.util.Date getDate() {
+        return Date;
     }
-    public int getId()
-    {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCo2QuantityToday() {
-        return Co2QuantityToday;
-    }
-
-    public int getCo2QuantityYesterday() {
-        return Co2QuantityYesterday;
-
-    }
-
-    public void setCO2ID(int CO2ID) {
-        this.CO2ID = CO2ID;
-    }
-
-    public void setCO2_value(float CO2_value) {
-        this.CO2_value = CO2_value;
-    }
-
-
 }

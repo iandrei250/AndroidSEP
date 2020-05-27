@@ -8,7 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@androidx.room.Database(entities = {Co2.class,Humidity.class, Temperature.class}, version = 1, exportSchema = false)
+@androidx.room.Database(entities = {Co2222.class,Humidity.class, Temperature.class}, version = 1, exportSchema = false)
 public abstract class Database extends RoomDatabase {
 
     private static Database instance;
@@ -43,9 +43,9 @@ public abstract class Database extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            co2Dao.insertCo2(new Co2(23,45));
-            co2Dao.insertCo2(new Co2(50,199));
-            co2Dao.insertCo2(new Co2(69,214));
+            co2Dao.insertCo2(new Co2222(23,45));
+            co2Dao.insertCo2(new Co2222(50,199));
+            co2Dao.insertCo2(new Co2222(69,214));
             return null;
         }
     }

@@ -7,8 +7,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.spacestationv2.Model.Co2;
-
 import java.util.List;
 
 @Dao

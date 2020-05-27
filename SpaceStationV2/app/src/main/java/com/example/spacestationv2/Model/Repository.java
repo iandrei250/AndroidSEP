@@ -3,12 +3,11 @@ package com.example.spacestationv2.Model;
 import android.app.Application;
 import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
-
 import java.util.List;
 
 public class Repository {
     private Co2Dao co2Dao;
-    private LiveData<List<Co2>> allCo2;
+    private LiveData<List<Co2222>> allCo2;
 
     private HumidityDao humidityDao;
     private LiveData<List<Humidity>> allHumidity;
@@ -30,19 +29,19 @@ public class Repository {
     }
 
     //CO2 methods
-    public void insertCo2(Co2 co2)
+    public void insertCo2(Co2222 co2222)
     {
-        new InsertCo2AsyncTask(co2Dao).execute(co2);
+        new InsertCo2AsyncTask(co2Dao).execute(co2222);
     }
 
-    public void updateCo2(Co2 co2)
+    public void updateCo2(Co2222 co2222)
     {
-       new UpdateCo2AsyncTask(co2Dao).execute(co2);
+       new UpdateCo2AsyncTask(co2Dao).execute(co2222);
     }
 
-    public void deleteCo2(Co2 co2)
+    public void deleteCo2(Co2222 co2222)
     {
-        new DeleteCo2AsyncTask(co2Dao).execute(co2);
+        new DeleteCo2AsyncTask(co2Dao).execute(co2222);
     }
 
     public void deleteAllCo2()
@@ -50,12 +49,12 @@ public class Repository {
        new DeleteAllCo2AsyncTask(co2Dao).execute();
     }
 
-    public LiveData<List<Co2>>getAllCo2()
+    public LiveData<List<Co2222>>getAllCo2()
     {
         return allCo2;
     }
 
-    private static class InsertCo2AsyncTask extends AsyncTask<Co2,Void,Void>
+    private static class InsertCo2AsyncTask extends AsyncTask<Co2222,Void,Void>
     {
         private Co2Dao co2Dao;
 
@@ -65,13 +64,13 @@ public class Repository {
         }
 
         @Override
-        protected Void doInBackground(Co2... co2s) {
-            co2Dao.insertCo2(co2s[0]);
+        protected Void doInBackground(Co2222... co2222s) {
+            co2Dao.insertCo2(co2222s[0]);
             return null;
         }
     }
 
-    private static class UpdateCo2AsyncTask extends AsyncTask<Co2,Void,Void>
+    private static class UpdateCo2AsyncTask extends AsyncTask<Co2222,Void,Void>
     {
         private Co2Dao co2Dao;
 
@@ -81,13 +80,13 @@ public class Repository {
         }
 
         @Override
-        protected Void doInBackground(Co2... co2s) {
-            co2Dao.updateCo2(co2s[0]);
+        protected Void doInBackground(Co2222... co2222s) {
+            co2Dao.updateCo2(co2222s[0]);
             return null;
         }
     }
 
-    private static class DeleteCo2AsyncTask extends AsyncTask<Co2,Void,Void>
+    private static class DeleteCo2AsyncTask extends AsyncTask<Co2222,Void,Void>
     {
         private Co2Dao co2Dao;
 
@@ -97,13 +96,13 @@ public class Repository {
         }
 
         @Override
-        protected Void doInBackground(Co2... co2s) {
-            co2Dao.deleteCo2(co2s[0]);
+        protected Void doInBackground(Co2222... co2222s) {
+            co2Dao.deleteCo2(co2222s[0]);
             return null;
         }
     }
 
-    private static class DeleteAllCo2AsyncTask extends AsyncTask<Co2,Void,Void>
+    private static class DeleteAllCo2AsyncTask extends AsyncTask<Co2222,Void,Void>
     {
         private Co2Dao co2Dao;
 
@@ -113,7 +112,7 @@ public class Repository {
         }
 
         @Override
-        protected Void doInBackground(Co2... co2s) {
+        protected Void doInBackground(Co2222... co2222s) {
             co2Dao.deleteAllCo2();
             return null;
         }
