@@ -3,34 +3,27 @@ package com.example.spacestationv2.Model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "temperature_table")
+import java.util.Date;
+
+
 public class Temperature {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
 
-    private int TempQuantityToday;
+    public int TEMP_ID;
+    public float TEMP_value;
+    public Date Date;
 
-    private int TempQuantityYesterday;
-
-    public Temperature(int TempQuantityToday, int TempQuantityYesterday) {
-        this.TempQuantityToday = TempQuantityToday;
-        this.TempQuantityYesterday = TempQuantityYesterday;
-    }
-    public int getId()
-    {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
+    public int getTEMP_ID() {
+        return TEMP_ID;
     }
 
-    public int getTempQuantityToday() {
-        return TempQuantityToday;
+    public float getTEMP_value() {
+        return TEMP_value;
     }
 
-    public int getTempQuantityYesterday() {
-        return TempQuantityYesterday;
-
+    public Date getDate() {
+        return Date;
     }
 }
+
+

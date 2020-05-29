@@ -14,4 +14,11 @@ public interface Api {
     @GET("datas/GetDataList")
     Call<List<CO2>> getCo2(@Query("room") String room,
                            @Query("type")String type);
+    @GET("datas/GetDataList")
+    Call<List<Humidity>> getHumidity(@Query("room") String room,
+                           @Query("type")String type);
+    @GET("datas/GetDataList")
+    Call<List<Temperature>> getTemperature(@Query("room") String room,
+                           @Query("type")String type);
+
 }

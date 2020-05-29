@@ -6,14 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.spacestationv2.Model.Co2222;
+
 import com.example.spacestationv2.Model.Repository;
 
 import java.util.List;
 
 public class AllStatsViewModel extends AndroidViewModel {
      private Repository repository;
-     private LiveData<List<Co2222>> allCo2;
 
     public AllStatsViewModel(@NonNull Application application) {
         super(application);

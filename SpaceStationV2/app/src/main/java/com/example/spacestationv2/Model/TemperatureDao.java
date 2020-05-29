@@ -1,5 +1,5 @@
 package com.example.spacestationv2.Model;
-
+/*
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -27,3 +27,5 @@ public interface TemperatureDao {
     @Query("SELECT * FROM temperature_table")
     LiveData<List<Temperature>> getAllTemperature();
 }
+
+ */

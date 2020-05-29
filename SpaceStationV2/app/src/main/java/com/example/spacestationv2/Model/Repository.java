@@ -1,41 +1,37 @@
 package com.example.spacestationv2.Model;
 
-import android.app.Application;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.spacestationv2.Co2;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import java.util.List;
+import static com.example.spacestationv2.ViewModel.RestAdapter.getUnsafeOkHttpClient;
 
 public class Repository {
-    private Co2Dao co2Dao;
-    private LiveData<List<Co2222>> allCo2;
 
-    private HumidityDao humidityDao;
-    private LiveData<List<Humidity>> allHumidity;
 
-    private TemperatureDao temperatureDao;
-    private LiveData<List<Temperature>> allTemperature;
-    private Repository repository;
+
     private Gson gson;
     private Api api;
     private LocalDateTime myDateObj;
-    private TextView view;
     private static Repository instance;
-    private MutableLiveData<List<CO2>> List;
+
     public static Repository getInstance() {
         if (instance == null) {
             instance = new Repository();
@@ -44,63 +40,97 @@ public class Repository {
     }
 
     public Repository() {
-        List = new MutableLiveData<>();
+
+
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = getUnsafeOkHttpClient();
+        // OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
+        gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+        Retrofit retro = new Retrofit.Builder().baseUrl("https://10.0.2.2:5001/api/").addConverterFactory(GsonConverterFactory.create(gson)).client(client).build();
+        api = retro.create(Api.class);
+        myDateObj = LocalDateTime.now();
+        // myDateObj=LocalDate.parse("2020-05-06");
+        //retrieveCo2();
 
     }
-public LiveData<List<CO2>> getCo2(){
+
+    public MutableLiveData<List<CO2>> getList(String room, String type)
+    {
+       final MutableLiveData<List<CO2>> co2Data= new MutableLiveData<>();
+        api.getCo2(room,type).enqueue(new Callback<List<CO2>>() {
+            @Override
+            public void onResponse(Call<List<CO2>> call, Response<List<CO2>> response) {
+                Log.d("Co2Fragment", "Status Code = " + response.code());
+                if (response.isSuccessful()) {
+                    co2Data.setValue(response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<CO2>> call, Throwable t) {
+
+                System.out.println(t.getMessage());
+
+              //  view.setText("error " + t.toString() + "\n" + call.request().toString());
+            }
+        });
+        return co2Data;
+    }
+    /*
+    public LiveData<List<CO2>> getCo2()
+    {
         return List;
     }
-        public void  GetCo2()
-        {
+    public void setCo2(MutableLiveData<List<CO2>> setCo2)
+    {
+        this.List=setCo2;
+    }
+    public void retrieveCo2(List<CO2> listCo2) {
 
-            Call<List<CO2>> call = api.getCo2("toilet","CO2");
-            System.out.println("C'MON MAN?");
+        Call<List<CO2>> call = api.getCo2("toilet", "CO2");
+        System.out.println("C'MON MAN?");
 
+        call.enqueue(new Callback<List<CO2>>() {
+            @Override
+            public void onResponse(Call<List<CO2>> call, Response<List<CO2>> response) {
+                Log.d("Co2Fragment", "Status Code = " + response.code());
+                if (!response.isSuccessful()) {
+                   co2Data
+                }
+                try {
 
-            call.enqueue(new Callback<List<CO2>>() {
-                @Override
-                public void onResponse(Call<List<CO2>> call, Response<List<CO2>> response) {
-                    System.out.println("WORKS??");
-                    System.out.println("WORKS??");
-                    Log.d("Co2Fragment", "Status Code = " + response.code());
-                    System.out.println("WORKS??");
-                    if (!response.isSuccessful()) {
-                        view.setText("Code: " + response.code());
-                        return;
-                    }
-                    System.out.println("NOW WORKSSSS??");
+                    // String work = response.body();
+                    MutableLiveData<List<CO2>> listOfCo2 = new MutableLiveData<>();
+                    listOfCo2.setValue(response.body());
+                    setCo2(listOfCo2);
+                    for (CO2 post : listOfCo2) {
+                        String content = "";
+                        content += "CO2ID: " + post.getCO2ID() + "\n";
+                        content += "CO2_value: " + post.getCO2_value() + "\n";
+                        content += "Date: " + post.getDate() + "\n";
 
-                    try {
-
-                        // String work = response.body();
-                        List<CO2> posts = response.body();
-                       for (CO2 post : posts) {
-                            String content = "";
-                            content += "CO2ID: " + post.getCO2ID() + "\n";
-                            content += "CO2_value: " + post.getCO2_value() + "\n";
-                            content += "Date: " + post.getDate() + "\n";
-
-                            view.append(content);
-                        }
-
-
-
-                    }
-                    catch (IllegalStateException | JsonSyntaxException exception)
-                    {
-                        exception.printStackTrace();
+                        view.append(content);
                     }
 
 
+                } catch (IllegalStateException | JsonSyntaxException exception) {
+                    exception.printStackTrace();
                 }
 
-                @Override
-                public void onFailure(Call<List<CO2>> call, Throwable t) {
 
-                    view.setText("error " + t.toString()+"\n"+ call.request().toString());
-                }
-            });
-        }
+            }
+
+            @Override
+            public void onFailure(Call<List<CO2>> call, Throwable t) {
+
+                view.setText("error " + t.toString() + "\n" + call.request().toString());
+            }
+        });
+    }
+
+     */
+}
 
 
 
@@ -384,4 +414,4 @@ public LiveData<List<CO2>> getCo2(){
         }
     }
 */
-    }
+

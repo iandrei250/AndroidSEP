@@ -1,5 +1,5 @@
 package com.example.spacestationv2.Model;
-
+/*
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -10,11 +10,11 @@ public class Co2222 {
 
     private int Co2QuantityToday;
 
-    private int Co2QuantityYesterday;
+
 
     public Co2222(int Co2QuantityToday, int Co2QuantityYesterday) {
         this.Co2QuantityToday = Co2QuantityToday;
-        this.Co2QuantityYesterday = Co2QuantityYesterday;
+
     }
     public int getId()
     {
@@ -28,8 +28,6 @@ public class Co2222 {
         return Co2QuantityToday;
     }
 
-    public int getCo2QuantityYesterday() {
-        return Co2QuantityYesterday;
-
-    }
 }
+
+ */

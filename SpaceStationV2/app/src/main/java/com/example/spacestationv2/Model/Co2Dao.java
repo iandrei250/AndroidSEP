@@ -1,5 +1,5 @@
 package com.example.spacestationv2.Model;
-
+/*
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -27,3 +27,6 @@ public interface Co2Dao {
     @Query("SELECT * FROM co2_table")
     LiveData<List<Co2222>> getAllCo2();
 }
+
+
+ */

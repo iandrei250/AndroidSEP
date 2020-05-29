@@ -19,7 +19,7 @@ public class CO2 {
         return CO2_value;
     }
 
-    public java.util.Date getDate() {
+    public Date getDate() {
         return Date;
     }
 }

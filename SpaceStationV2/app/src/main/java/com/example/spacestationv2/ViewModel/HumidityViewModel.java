@@ -1,45 +1,28 @@
 package com.example.spacestationv2.ViewModel;
-
-import android.app.Application;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import com.example.spacestationv2.Model.Humidity;
-import com.example.spacestationv2.Model.Repository;
-
+import com.example.spacestationv2.Model.RepositoryHumidity;
 import java.util.List;
 
-public class HumidityViewModel extends AndroidViewModel {
-     private Repository repository;
-     private LiveData<List<Humidity>> allHumidity;
+public class HumidityViewModel extends ViewModel {
 
-    public HumidityViewModel(@NonNull Application application) {
-        super(application);
-     //   allHumidity = repository.getAllHum();
-    }
-/*
-    public void insert(Humidity humidity)
-    {
-        repository.insertHum(humidity);
-    }
-    public void update(Humidity humidity)
-    {
-        repository.updateHum(humidity);
-    }
-    public void delete(Humidity humidity)
-    {
-        repository.deleteAllHum();
-    }
-    public void deleteAllHumidity()
-    {
-        repository.deleteAllHum();
-    }
-    public LiveData<List<Humidity>> getAllCo2()
-    {
-        return allHumidity;
-    }
+    private RepositoryHumidity repositoryHumidity;
+    private MutableLiveData<List<Humidity>> mutableLiveData;
 
- */
-}
+
+    public void init()
+    {
+        if (mutableLiveData!=null)
+        {
+            return;
+        }
+        repositoryHumidity = RepositoryHumidity.getInstanceHumidity();
+        mutableLiveData = repositoryHumidity.getList("toilet","Humidity");
+    }
+    public LiveData<List<Humidity>> getHumidityRepo()
+    {
+        return mutableLiveData;
+    }
+    }
