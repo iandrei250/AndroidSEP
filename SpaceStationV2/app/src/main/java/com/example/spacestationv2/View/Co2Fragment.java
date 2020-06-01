@@ -14,8 +14,10 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
+
 import com.example.spacestationv2.Model.Api;
 import com.example.spacestationv2.Model.CO2;
+import com.example.spacestationv2.Model.RecycleAdapter;
 import com.example.spacestationv2.Model.Repository;
 import com.example.spacestationv2.R;
 import com.example.spacestationv2.ViewModel.Co2ViewModel;
@@ -24,7 +26,11 @@ import com.google.gson.Gson;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class Co2Fragment extends Fragment {
 
@@ -35,41 +41,71 @@ public class Co2Fragment extends Fragment {
     private TextView view;
     private Co2ViewModel co2ViewModel;
     private Repository repository;
-    private ArrayList<CO2> co2ArrayList = new ArrayList<>();
+    private List<CO2> co2ArrayList;
+    private RecyclerView recyclerView;
+    private RecycleAdapter adapter;
+    private LayoutInflater inflater;
+    private RecyclerView.LayoutManager layoutManager;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_co2, container, false);
-        view=rootView.findViewById(R.id.retrofit_Fragmentco2);
-        co2ViewModel= ViewModelProviders.of(this).get(Co2ViewModel.class);
+
+        View rootView = inflater.inflate(R.layout.fragment_co2, container, false);
+
+
+
+        co2ViewModel = ViewModelProviders.of(this).get(Co2ViewModel.class);
         co2ViewModel.init();
         co2ViewModel.getCo2Repo().observe(this, new Observer<List<CO2>>() {
             @Override
             public void onChanged(List<CO2> co2s) {
-                if (!co2s.isEmpty()) {
-                    view.setText("");
-                    for (CO2 n : co2s) {
-                        String content = "";
-                        content += "CO2ID: " + n.getCO2ID() + "\n";
-                        content += "CO2_value: " + n.getCO2_value() + "\n";
-                        content += "Date: " + n.getDate() + "\n";
-                        view.append(content);
-                    }
-                } else {
-                    view.setText("Empty");
-                }
+
+                adapter.setCo2List(co2s);
+
+
             }
-        }
-        );
+
+
+        });
+
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new RecycleAdapter(getContext(), co2ArrayList);
+        recyclerView.setAdapter(adapter);
+
+
+
+        /*
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+
+       recyclerView = recyclerView.findViewById(R.id.recyclerview);
+        recyclerView.setHasFixedSize(true);
+        adapter = new RecycleAdapter(getContext().getApplicationContext(), co2ArrayList);
+        recyclerView.setAdapter(adapter);
+       // recyclerView = recyclerView.findViewById(R.id.recyclerview);
+
+        */
+     /*
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.hasFixedSize();
+        //view=rootView.findViewById(R.id.retrofit_Fragmentco2);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+        final RecycleAdapter adapter = new RecycleAdapter();
+        recyclerView.setAdapter(adapter);
+      */
 
         return rootView;
-
     }
-
-    }
+}
 
 
 

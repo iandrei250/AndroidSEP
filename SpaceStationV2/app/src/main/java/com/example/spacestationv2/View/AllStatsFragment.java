@@ -39,10 +39,9 @@ public class AllStatsFragment extends Fragment {
         barDataSet2.setColors(Color.BLUE);
     BarDataSet barDataSet3=new BarDataSet(barEntries3(),"Luminosity");
         barDataSet3.setColors(Color.YELLOW);
-    BarDataSet barDataSet4=new BarDataSet(barEntries4(),"Temperature");
-        barDataSet4.setColors(Color.GREEN);
 
-    BarData data = new BarData(barDataSet1,barDataSet2,barDataSet3,barDataSet4);
+
+    BarData data = new BarData(barDataSet1,barDataSet2,barDataSet3);
         mpBarChart.setData(data);
 
     String[] days=new String[]{"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
@@ -104,18 +103,6 @@ public class AllStatsFragment extends Fragment {
         barEntries.add(new BarEntry(5,2100));
         barEntries.add(new BarEntry(6,1300));
         barEntries.add(new BarEntry(7,1500));
-        return barEntries;
-    }
-    private ArrayList<BarEntry>barEntries4()
-    {
-        ArrayList<BarEntry>barEntries=new ArrayList<>();
-        barEntries.add(new BarEntry(1,900));
-        barEntries.add(new BarEntry(2,1400));
-        barEntries.add(new BarEntry(3,100));
-        barEntries.add(new BarEntry(4,1600));
-        barEntries.add(new BarEntry(5,2500));
-        barEntries.add(new BarEntry(6,1500));
-        barEntries.add(new BarEntry(7,1100));
         return barEntries;
     }
 }
