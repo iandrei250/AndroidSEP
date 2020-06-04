@@ -1,51 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="4dp"
+    android:layout_margin="4dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        android:layout_margin="4dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:background="@android:color/holo_green_light"
+        >
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="2dp"
+            android:id="@+id/imageview"/>
+
 
         <TextView
-            android:id="@+id/nav_co2ID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
-            android:gravity="center_vertical"
-            android:padding="5dp"
-            android:text="TextView"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/nav_co2Value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="42dp"
-            android:gravity="center_vertical"
-            android:padding="5dp"
-            android:text="TextView"
-            android:textSize="15sp" />
+            android:layout_toEndOf="@+id/imageview"
+            android:text="Line1"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/textview1"/>
 
         <TextView
-            android:id="@+id/nav_co2Date"
+            android:id="@+id/textview2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="72dp"
-            android:gravity="center_vertical"
-            android:padding="5dp"
-            android:text="TextView"
-            android:textSize="10sp" />
+            android:text="Line2"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:layout_below="@id/textview1"
+            android:layout_toEndOf="@+id/imageview"
+            android:layout_marginStart="8dp"/>
+        <TextView
+            android:id="@+id/textview3"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview2"
+            android:layout_toEndOf="@+id/imageview"
+            android:text="Line3"
+            android:layout_marginStart="8dp"
+            />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

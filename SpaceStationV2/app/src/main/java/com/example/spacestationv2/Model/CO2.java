@@ -21,6 +21,7 @@ public class CO2 {
         return CO2ID;
     }
 
+
     public float getCO2_value() {
         return CO2_value;
     }
