@@ -78,31 +78,6 @@ public class Co2Fragment extends Fragment {
         adapter = new RecycleAdapter(getContext(), co2ArrayList);
         recyclerView.setAdapter(adapter);
 
-
-
-        /*
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-
-       recyclerView = recyclerView.findViewById(R.id.recyclerview);
-        recyclerView.setHasFixedSize(true);
-        adapter = new RecycleAdapter(getContext().getApplicationContext(), co2ArrayList);
-        recyclerView.setAdapter(adapter);
-       // recyclerView = recyclerView.findViewById(R.id.recyclerview);
-
-        */
-     /*
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.hasFixedSize();
-        //view=rootView.findViewById(R.id.retrofit_Fragmentco2);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext());
-        final RecycleAdapter adapter = new RecycleAdapter();
-        recyclerView.setAdapter(adapter);
-      */
-
         return rootView;
     }
 }

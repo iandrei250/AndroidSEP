@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 //Bar Chart
+import com.example.spacestationv2.Model.Api;
+import com.example.spacestationv2.Model.Servo;
 import com.example.spacestationv2.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -18,17 +22,41 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.spacestationv2.ViewModel.RestAdapter.getUnsafeOkHttpClient;
 
 public class AllStatsFragment extends Fragment {
     public BarChart mpBarChart;
+    public Button spinButton;
+    private Api api;
+    private Gson gson;
     @Nullable
     @Override
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all_stats, container, false);
         mpBarChart = view.findViewById(R.id.barChart);
+        spinButton = view.findViewById(R.id.Spin);
+        spinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinServo();
+            }
+        });
 
 
 
@@ -105,5 +133,31 @@ public class AllStatsFragment extends Fragment {
         barEntries.add(new BarEntry(7,1500));
         return barEntries;
     }
+
+    public void spinServo()
+    {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = getUnsafeOkHttpClient();
+        gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+        Retrofit retro = new Retrofit.Builder().baseUrl("https://10.0.2.2:5001/api/").addConverterFactory(GsonConverterFactory.create(gson)).client(client).build();
+        api = retro.create(Api.class);
+        Servo servo = new Servo(1,true,new Date(2020,06,04));
+        String serialize = gson.toJson(servo);
+        Call<Servo> servoCall=api.createPost("toilet", serialize);
+        servoCall.enqueue(new Callback<Servo>() {
+            @Override
+            public void onResponse(Call<Servo> call, Response<Servo> response) {
+                String random = response.body() + "";
+                Toast.makeText(getContext().getApplicationContext(),random, Toast.LENGTH_SHORT);
+            }
+
+            @Override
+            public void onFailure(Call<Servo> call, Throwable t) {
+               t.getMessage();
+            }
+        });
+    }
+
 }
 

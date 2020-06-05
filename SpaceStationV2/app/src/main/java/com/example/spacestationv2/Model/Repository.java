@@ -46,14 +46,10 @@ public class Repository {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = getUnsafeOkHttpClient();
-        // OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
         gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         Retrofit retro = new Retrofit.Builder().baseUrl("https://10.0.2.2:5001/api/").addConverterFactory(GsonConverterFactory.create(gson)).client(client).build();
         api = retro.create(Api.class);
         myDateObj = LocalDateTime.now();
-        // myDateObj=LocalDate.parse("2020-05-06");
-        //retrieveCo2();
-
     }
 
     public MutableLiveData<List<CO2>> getList(String room, String type)

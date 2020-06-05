@@ -32,7 +32,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyviewHo
         CO2 currentList = co2List.get(position);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = format.format(currentList.getDate());
-        holder.co2Image.setImageResource(R.drawable.ic_humidityicon);
+        holder.co2Image.setImageResource(R.drawable.ic_justworkco2);
         holder.co2ID.setText("ID : " + String.valueOf(currentList.getCO2ID()));
         holder.co2Value.setText("Value : "+String.valueOf(currentList.getCO2_value()));
         holder.co2Date.setText("Date : "+dateString);

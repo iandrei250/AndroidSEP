@@ -7,10 +7,23 @@
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
-        android:layout_width="410dp"
-        android:layout_height="587dp"
+        android:layout_width="397dp"
+        android:layout_height="492dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/Spin"
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="280dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="65dp"
+        android:text="Spin Servo"
+        android:onClick="spinServo"/>
 
 </RelativeLayout>
