@@ -20,11 +20,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 import java.util.List;
+
 import static com.example.spacestationv2.ViewModel.RestAdapter.getUnsafeOkHttpClient;
 
 public class Repository {
-
 
 
     private Gson gson;
@@ -42,7 +43,6 @@ public class Repository {
     public Repository() {
 
 
-
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = getUnsafeOkHttpClient();
@@ -52,10 +52,9 @@ public class Repository {
         myDateObj = LocalDateTime.now();
     }
 
-    public MutableLiveData<List<CO2>> getList(String room, String type)
-    {
-       final MutableLiveData<List<CO2>> co2Data= new MutableLiveData<>();
-        api.getCo2(room,type).enqueue(new Callback<List<CO2>>() {
+    public MutableLiveData<List<CO2>> getList(String room, String type) {
+        final MutableLiveData<List<CO2>> co2Data = new MutableLiveData<>();
+        api.getCo2(room, type).enqueue(new Callback<List<CO2>>() {
             @Override
             public void onResponse(Call<List<CO2>> call, Response<List<CO2>> response) {
                 Log.d("Co2Fragment", "Status Code = " + response.code());
@@ -63,12 +62,13 @@ public class Repository {
                     co2Data.setValue(response.body());
                 }
             }
+
             @Override
             public void onFailure(Call<List<CO2>> call, Throwable t) {
 
                 System.out.println(t.getMessage());
 
-              //  view.setText("error " + t.toString() + "\n" + call.request().toString());
+                //  view.setText("error " + t.toString() + "\n" + call.request().toString());
             }
         });
         return co2Data;

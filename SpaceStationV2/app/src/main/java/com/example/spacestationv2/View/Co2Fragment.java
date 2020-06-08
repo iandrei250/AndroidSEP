@@ -34,17 +34,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class Co2Fragment extends Fragment {
 
-    private Gson gson;
-    public LocalDateTime myDateObj;
-    private Api api;
-    private View rootView;
-    private TextView view;
+
     private Co2ViewModel co2ViewModel;
     private Repository repository;
     private List<CO2> co2ArrayList;
     private RecyclerView recyclerView;
-    private RecycleAdapter adapter;
     private LayoutInflater inflater;
+    private RecycleAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
 
@@ -54,7 +50,6 @@ public class Co2Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_co2, container, false);
-
 
 
         co2ViewModel = ViewModelProviders.of(this).get(Co2ViewModel.class);

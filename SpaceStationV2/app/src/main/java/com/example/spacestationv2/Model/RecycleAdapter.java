@@ -6,27 +6,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.spacestationv2.R;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyviewHolder> {
-   private Context context;
+    private Context context;
     private List<CO2> co2List = new ArrayList<>();
 
     @Override
     public MyviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.recyclerview_adapter, parent,false);
+        View view = inflater.inflate(R.layout.recyclerview_adapter, parent, false);
         //from(parent.getContext()).inflate(R.layout.fragment_co2,parent,false);
         return new MyviewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull RecycleAdapter.MyviewHolder holder, int position) {
         CO2 currentList = co2List.get(position);
@@ -34,8 +32,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyviewHo
         String dateString = format.format(currentList.getDate());
         holder.co2Image.setImageResource(R.drawable.ic_justworkco2);
         holder.co2ID.setText("ID : " + String.valueOf(currentList.getCO2ID()));
-        holder.co2Value.setText("Value : "+String.valueOf(currentList.getCO2_value()));
-        holder.co2Date.setText("Date : "+dateString);
+        holder.co2Value.setText("Value : " + String.valueOf(currentList.getCO2_value()));
+        holder.co2Date.setText("Date : " + dateString);
 
     }
 
@@ -51,9 +49,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyviewHo
 
     @Override
     public int getItemCount() {
-       if(co2List!=null)
-           return co2List.size();
-       return 0;
+        if (co2List != null)
+            return co2List.size();
+        return 0;
     }
 
     static class MyviewHolder extends RecyclerView.ViewHolder {

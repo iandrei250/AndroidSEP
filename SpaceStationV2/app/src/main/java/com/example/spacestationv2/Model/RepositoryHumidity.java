@@ -10,7 +10,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -20,7 +23,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 import java.util.List;
+
 import static com.example.spacestationv2.ViewModel.RestAdapter.getUnsafeOkHttpClient;
 
 public class RepositoryHumidity {
@@ -42,13 +47,11 @@ public class RepositoryHumidity {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = getUnsafeOkHttpClient();
-        // OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
         gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         Retrofit retro = new Retrofit.Builder().baseUrl("https://10.0.2.2:5001/api/").addConverterFactory(GsonConverterFactory.create(gson)).client(client).build();
         api = retro.create(Api.class);
         myDateObj = LocalDateTime.now();
-        // myDateObj=LocalDate.parse("2020-05-06");
-        //retrieveCo2();
+
 
     }
 
@@ -72,6 +75,7 @@ public class RepositoryHumidity {
             }
         });
         return humidityData;
+
     }
 }
 

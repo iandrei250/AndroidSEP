@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -29,6 +30,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,13 +41,11 @@ public class TemperatureFragment extends Fragment {
     private View rootView;
     private TextView view;
     private TemperatureViewModel temperatureViewModel;
-    private RepositoryTemperature repositoryHumidity;
     private RecyclerView recyclerView;
     private RecycleTemperature adapterTemperature;
     private LayoutInflater inflater;
     private List<Temperature> temperatureList;
     private RecyclerView.LayoutManager layoutManager;
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -70,7 +70,7 @@ public class TemperatureFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        adapterTemperature = new RecycleTemperature(getContext(),temperatureList);
+        adapterTemperature = new RecycleTemperature(getContext(), temperatureList);
         recyclerView.setAdapter(adapterTemperature);
 
         return rootView;

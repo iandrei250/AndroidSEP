@@ -21,6 +21,7 @@ public class Servo implements Serializable {
     public boolean getSpinning() {
         return Spinning;
     }
+
     public Date getDate() {
         return Date;
     }

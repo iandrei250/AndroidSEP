@@ -45,39 +45,17 @@ public class Co2ViewModel extends ViewModel {
         //  repository= Repository.getInstance();
     }
 
-    public void init()
-    {
-        if (mutableLiveData!=null)
-        {
+    public void init() {
+        if (mutableLiveData != null) {
             return;
         }
         repository = Repository.getInstance();
-        mutableLiveData = repository.getList("toilet","CO2");
-    }
-    public LiveData<List<CO2>> getCo2Repo()
-    {
-        return mutableLiveData;
+        mutableLiveData = repository.getList("toilet", "CO2");
     }
 
-/*
-    public void insert(Co2222 co2222) { repository.insertCo2(co2222); }
-    public void update(Co2222 co2222)
-    {
-        repository.updateCo2(co2222);
+    public LiveData<List<CO2>> getCo2Repo() {
+        return mutableLiveData;
     }
-    public void delete(Co2222 co2222)
-    {
-        repository.deleteCo2(co2222);
-    }
-    public void deleteAllCo2()
-    {
-        repository.deleteAllCo2();
-    }
-    /*public LiveData<List<Co2222>> getAllCo2()
-    {
-        return allCo2;
-    }
-*/
 
 
 }

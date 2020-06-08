@@ -23,10 +23,10 @@ public class RecycleHumidity extends RecyclerView.Adapter<RecycleHumidity.Myview
     @Override
     public MyviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.recyclerview_adapter, parent,false);
-        //from(parent.getContext()).inflate(R.layout.fragment_co2,parent,false);
+        View view = inflater.inflate(R.layout.recyclerview_adapter, parent, false);
         return new MyviewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull RecycleHumidity.MyviewHolder holder, int position) {
         Humidity currentList = humidityList.get(position);
@@ -34,8 +34,8 @@ public class RecycleHumidity extends RecyclerView.Adapter<RecycleHumidity.Myview
         String dateString = format.format(currentList.getDate());
         holder.humidityImage.setImageResource(R.drawable.ic_humidityicon);
         holder.humidityID.setText("ID : " + String.valueOf(currentList.getHUM_ID()));
-        holder.humidityValue.setText("Value : "+String.valueOf(currentList.getHUM_value()));
-        holder.humidityDate.setText("Date : "+dateString);
+        holder.humidityValue.setText("Value : " + String.valueOf(currentList.getHUM_value()));
+        holder.humidityDate.setText("Date : " + dateString);
 
     }
 
@@ -44,14 +44,14 @@ public class RecycleHumidity extends RecyclerView.Adapter<RecycleHumidity.Myview
         this.humidityList = humidityList;
     }
 
-    public void setHumidityList(List<Humidity> humidityList ) {
+    public void setHumidityList(List<Humidity> humidityList) {
         this.humidityList = humidityList;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        if(humidityList!=null)
+        if (humidityList != null)
             return humidityList.size();
         return 0;
     }
